@@ -5,7 +5,9 @@ appenv/
 migrations/versions
 migrations
 migrations/
-# migration_tenant/
+migration_tenant/alembic.ini
+migration_tenant/script.py.mako
+migration_tenant/README
 **/__pycache__/
 */__pycache__/
 *.pyc
