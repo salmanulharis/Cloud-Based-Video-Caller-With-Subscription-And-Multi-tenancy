@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="address_container">
+        {% for address in addresses %}
+            {% if address == used_add %}
+                <div class="address_box used">
+                    <input type="hidden" name="cus_id" id="cus_id" value="{{address}}">
+                    {% for a in addresses[address] %}
+                        <p>{{a}} : {{addresses[address][a]}}</p>
+                    {% endfor %}
+                    <a class="btn btn-secondary" href="/using_address/{{ address }}">use this address</a>
+                </div>
+            {% else %}
+                <div class="address_box">
+                    <input type="hidden" name="cus_id" id="cus_id" value="{{address}}">
+                    {% for a in addresses[address] %}
+                        <p>{{a}} : {{addresses[address][a]}}</p>
+                    {% endfor %}
+                    <a class="btn btn-secondary" href="/using_address/{{ address }}">use this address</a>
+                </div>
+            {% endif %}
+            
+        {% endfor %}
+    </div>
+    <br>
+    <div>
+        <a class="btn btn-primary" href="/add_address">Add address</a>
+    </div>
+
+
+{% endblock content %}

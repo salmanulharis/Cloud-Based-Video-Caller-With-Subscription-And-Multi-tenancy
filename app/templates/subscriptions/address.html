@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="using_address">
+		<h1>{{ selected_add['fullname'] }}</h1>
+		<div class="address_details">
+			<p>Phone : {{ selected_add['phone'] }}</p>
+			<p>City : {{ selected_add['city'] }}</p>
+			<p>State : {{ selected_add['state'] }}</p>
+			<p>Building : {{ selected_add['building'] }}</p>
+		</div>
+		<br>
+		<div>
+			<a class="btn btn-secondary" href="/payment_options/{{ plan_id }}">proceed</a>
+		</div>
+	</div>
+	<br>
+	<div class="address_container user_address">
+        {% for address in addresses %}
+            {% if address == used_add %}
+                <div class="address_box used">
+                    {% for a in addresses[address] %}
+                        <p>{{a}} : {{addresses[address][a]}}</p>
+                    {% endfor %}
+                    <a class="btn btn-secondary" href="/using_address/{{ address }}">use this address</a>
+                </div>
+            {% else %}
+                <div class="address_box">
+                    {% for a in addresses[address] %}
+                        <p>{{a}} : {{addresses[address][a]}}</p>
+                    {% endfor %}
+                    <a class="btn btn-secondary" href="/using_address/{{ address }}">use this address</a>
+                </div>
+            {% endif %}
+            
+        {% endfor %}
+    </div>
+    <br>
+    <div>
+        <a class="btn btn-primary" href="/add_address">Add address</a>
+    </div>
+
+{% endblock content %}

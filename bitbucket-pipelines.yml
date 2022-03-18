@@ -1,0 +1,126 @@
+# pipelines:
+#   tags:
+#     '*':
+#       - step:
+#           name: "Preparing bash to scripts"
+#           script:
+#             - touch deploy.sh
+#             - echo $BITBUCKET_TAG
+#             - echo '#!/bin/bash' >> deploy.sh
+#             - echo "if [[ $BITBUCKET_TAG == *'-rc'* ]]; then" >> deploy.sh
+#             - echo 'echo "releasing release candidate"' >> deploy.sh
+#             # - echo 'cd /home/flask/flask_app' >> deploy.sh
+#             # - echo 'git pull origin master' >> deploy.sh
+#             # - echo 'source appenv/bin/activate' >> deploy.sh
+#             # - echo 'flask --version' >> deploy.sh
+#             # - echo 'export FLASK_APP=app' >> deploy.sh
+#             # - echo 'flask db stamp head || { echo 'Stamping failed' ; exit 1; }' >> deploy.sh
+#             # - echo 'flask db migrate || { echo 'migration failed' ; exit 1; }' >> deploy.sh
+#             # - echo 'flask db upgrade || { echo 'db upgading failed' ; exit 1; }' >> deploy.sh
+#             # - echo 'systemctl restart flask_app' >> deploy.sh
+#             - echo 'else' >> deploy.sh
+#             - echo 'echo "releasing production candidate"' >> deploy.sh
+#             # - echo 'cd /home/flask/flask_app' >> deploy.sh
+#             # - echo 'git pull origin development' >> deploy.sh
+#             # - echo 'source appenv/bin/activate' >> deploy.sh
+#             # - echo 'flask --version' >> deploy.sh
+#             # - echo 'export FLASK_APP=app' >> deploy.sh
+#             # - echo 'flask db stamp head || { echo 'Stamping failed' ; exit 1; }' >> deploy.sh
+#             # - echo 'flask db migrate || { echo 'migration failed' ; exit 1; }' >> deploy.sh
+#             # - echo 'flask db upgrade || { echo 'db upgading failed' ; exit 1; }' >> deploy.sh
+#             # - echo 'systemctl restart flask_app' >> deploy.sh
+#             - echo 'fi' >> deploy.sh
+#           artifacts: # defining the artifacts to be passed to each future step.
+#             - deploy.sh
+#       - step:
+#           name: "Deployment"
+#           script:
+#             - 'echo "deploying"'
+#             - 'cat deploy.sh'
+#             - pipe: atlassian/scp-deploy:1.0.1
+#               variables:
+#                 USER: 'root'
+#                 SERVER: '142.93.211.142'
+#                 REMOTE_PATH: '.'
+#                 LOCAL_PATH: "deploy.sh"
+#             - pipe: atlassian/ssh-run:0.2.2
+#               variables:
+#                 SSH_USER: 'root'
+#                 SERVER: '142.93.211.142'
+#                 COMMAND: 'bash deploy.sh'
+
+
+
+
+pipelines:
+  tags:
+    '*-rc*':
+      - step:
+          name: "Preparing bash to scripts"
+          script:
+            - touch deploy.sh
+            - echo '#!/bin/bash' >> deploy.sh
+            - echo 'echo "releasing release candidate"' >> deploy.sh
+            # - echo 'cd /home/flask/flask_app' >> deploy.sh
+            # - echo 'git pull origin master || { echo 'git pull failed' ; exit 1; }' >> deploy.sh
+            # - echo 'source appenv/bin/activate' >> deploy.sh
+            # - echo 'flask --version' >> deploy.sh
+            # - echo 'export FLASK_APP=app' >> deploy.sh
+            # - echo 'flask db stamp head' >> deploy.sh
+            # - echo 'flask db migrate' >> deploy.sh
+            # - echo 'flask db upgrade' >> deploy.sh
+            # - echo 'systemctl restart flask_app' >> deploy.sh
+          artifacts: # defining the artifacts to be passed to each future step.
+            - deploy.sh
+      - step:
+          name: "Deployment to production"
+          script:
+            - 'echo "deploying to production"'
+            - 'cat deploy.sh'
+            - pipe: atlassian/scp-deploy:1.0.1
+              variables:
+                USER: 'root'
+                SERVER: '142.93.211.142'
+                REMOTE_PATH: '.'
+                LOCAL_PATH: "deploy.sh"
+            - pipe: atlassian/ssh-run:0.2.2
+              variables:
+                SSH_USER: 'root'
+                SERVER: '142.93.211.142'
+                COMMAND: 'bash deploy.sh'
+
+    '*':
+      - step:
+          name: "Preparing bash to scripts"
+          script:
+            - touch deploy.sh
+            - echo '#!/bin/bash' >> deploy.sh
+            - echo 'echo "releasing production candidate"' >> deploy.sh
+            # - echo 'cd /home/flask/flask_app' >> deploy.sh
+            # - echo 'git pull origin development' >> deploy.sh
+            # - echo 'source dochoursstageenv/bin/activate' >> deploy.sh
+            # - echo 'flask --version' >> deploy.sh
+            # - echo 'export FLASK_APP=dochours' >> deploy.sh
+            # - echo 'flask db stamp head || { echo 'Stamping failed' ; exit 1; }' >> deploy.sh
+            # - echo 'flask db migrate || { echo 'migration failed' ; exit 1; }' >> deploy.sh
+            # - echo 'flask db upgrade || { echo 'db upgading failed' ; exit 1; }' >> deploy.sh
+            # # - echo 'systemctl restart dochours-stage' >> deploy.sh
+            # - echo 'systemctl restart dochours-stage' >> deploy.sh
+          artifacts: # defining the artifacts to be passed to each future step.
+            - deploy.sh
+      - step:
+          name: "Deployment to staging"
+          script:
+            - 'echo "deploying to staging"'
+            - 'cat deploy.sh'
+            - pipe: atlassian/scp-deploy:1.0.1
+              variables:
+                USER: 'root'
+                SERVER: '142.93.211.142'
+                REMOTE_PATH: '.'
+                LOCAL_PATH: "deploy.sh"
+            - pipe: atlassian/ssh-run:0.2.2
+              variables:
+                SSH_USER: 'root'
+                SERVER: '142.93.211.142'
+                COMMAND: 'bash deploy.sh'

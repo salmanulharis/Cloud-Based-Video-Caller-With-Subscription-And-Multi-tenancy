@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+	<div>
+		<h1>Click here to <a href="{{ url_for('calling.optok_join', call_key=call_key) }}" target="_blank">Join</a></h1>
+		<p>Or copy the URL:</p>
+		<div id="url_container">
+			<h1>PIN: {{ call_pin }}</h1>
+			<p id="join_link">{{ join_url }}</p>
+			<button id="copy_url">Copy</button>
+		</div>
+	</div>
+
+{% endblock content %}

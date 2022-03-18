@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>Checkout <a href="{{ url_for('products.checkout_page') }}">here</a></h1>
+    <h1>Add Prodcut <a href="{{ url_for('products.add_product') }}">here</a></h1>
+    <h1>Orders <a href="{{ url_for('products.order_list') }}">here</a></h1>
+    <h1>Items in Cart</h1>
+    <div class="pl-5">
+      {% for product in products %}
+        <h4>{{ product.name }} - {{ product.price }}</h4>
+      {% endfor %}
+    </div>
+    </br>
+    <h1>Total price: {{ total }}</h1>
+
+
+{% endblock content %}

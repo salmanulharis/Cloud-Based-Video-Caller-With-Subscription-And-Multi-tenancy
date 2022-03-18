@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+	<div>
+		<h1>Click here to <a href="{{ url_for('users.optok_join', apiKey=apiKey, session_id=session_id) }}" target="_blank">Join</a></h1>
+	</div>
+
+{% endblock content %}

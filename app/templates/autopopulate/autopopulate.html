@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div>
+		<div class="">
+			<div class="d-flex">
+				<input class="form-control" type="text" id="populate_input" name="populate_input">
+				<button class="btn btn-primary">Select</button>
+			</div>
+			<div id="list_box">
+				
+			</div>
+		</div>
+		<br>
+		<div>
+			<a href="/generate_data">Generate Data</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("#populate_input").on('change keyup paste', function(){
+			var input_value = $(this).val()
+			$.ajax({
+			    type: "GET",
+			    url: "/get_populated_data",
+			    data:{
+			      search_value: input_value,
+			    },
+			    success: function(response){
+			    	var listItems = response['data'];
+			    	$('#list_box').empty();
+					for (let item of listItems) {
+						item_div = '<div>'  + item['column1'] + '-'
+											+ item['column2'] + '-'
+											+ item['column3'] + '-'
+											+ item['column4'] + '-'
+											+ item['column5'] + '-'
+											+ item['column6'] + 
+									'</div>'
+						$('#list_box').append(item_div)
+					}			      
+			    }
+			});
+		});
+	</script>
+{% endblock content %}

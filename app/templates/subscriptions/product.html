@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="plan_container">
+        {% for plan in plans %}
+            
+            <div class="sub_details_container {{ plan.name }}">
+                {% if plan.name == 'premium' %}
+                    <h1>Premium Plan</h1>
+                {% elif plan.name == 'basic' %}
+                    <h1>Basic Plan</h1>
+                {% elif plan.name == 'free' %}
+                    <h1>Free Plan</h1>
+                {% endif %}
+                <p>{{plan.price}}/{{plan.duration}}</p>
+                {% if plan.id == subs_history.plan_id %}
+                    <button class="btn btn-outline-primary" disabled>Subscribed</button>
+                {% else %}
+                    <!-- <a class="btn btn-primary" href="/payment_options/{{plan.id}}">Subscribe</a> -->
+                    <a class="btn btn-primary" href="/sub_address/{{plan.id}}">Subscribe</a>
+                {% endif %}
+            </div>
+            
+        {% endfor %}
+    </div>
+    <!-- <div class="sub_product_container">
+        {% for product in products %}
+            <div class="sub_product">
+                <h1>{{product.name}}</h1>
+                <p>{{product.price}}/{{product.subscription}}</p>
+                <a class="btn btn-primary" href="/show_address/{{ product.price_id }}">Subscribe</a>
+
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+    <div>
+        <a class="btn btn-primary" href="/create_sub_product">Add Product</a>
+    </div> -->
+
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>Items in Cart</h1>
+    <div class="pl-5">
+      {% for product in products %}
+        <h4>{{ product.name }} - {{ product.price }}</h4>
+      {% endfor %}
+    </div>
+    </br>
+    <h1>Total price: {{ total }}</h1>
+    <a class="btn btn-primary" href="/delivery_address">Proceed to Checkout</a>
+    <!-- <form action="/create-checkout-session" method="POST">
+      <button type="submit">Checkout</button>
+    </form> -->
+    <!-- <form action="/checkout" method="post">
+      <script
+        src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key='pk_test_51JpmYRSG2gvM0rClwhIpFNO9Mz6fR7RwXEo0UoDapEjbxUYGa4yCHBkj0exeHpD7ZvJF3AgTwYF0VljF3XfjNeWq004yQEk7jv'
+        data-description="A Flask Charge"
+        data-amount="500"
+        data-locale="auto">
+      </script>
+    </form> -->
+
+{% endblock content %}

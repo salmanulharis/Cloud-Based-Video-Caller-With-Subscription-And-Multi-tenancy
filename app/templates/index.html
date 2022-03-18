@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block head %}
+
+<link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+{% block content %}
+    <div class="main_container d-flex justify-content-between flex-column flex-lg-row">
+    	<div id="videos">
+            <div id="subscriber" class="subscriber">
+                <div id="option_popup" class="option_popup" style="display: none;">
+                    <div>
+                        <h6 id="join_link_heading">Join Link</h6>
+                        <!-- <p>close</p> -->
+                    </div>
+                    <div id="copy_join_link">{{ join_url }}</div>
+                    <div>
+                        <button id="copy_link_button">Copy Link</button>
+                        <button id="copy_message_button">Copy as Message</button>
+                    </div>
+                </div>
+                <div id="no_one">
+                    <h1>Please wait until someone join the meeting.</h1>
+                </div>
+            </div>
+            <div class="row publisher_container">
+                <div class="col-4"></div>
+                <div class="col-4 button_space">
+                    <button id="audiomute" name="audiomute" onclick="audioMute()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+                        <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+                        <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                    </button>
+                    <button id="videomute" name="videomute" onclick="videoMute()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+                        </svg>
+                    </button>
+                    <button id="call_disconnect" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                        </svg>
+                    </button>
+                    <button id="options">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        </svg>
+                    </button>
+                    <button id="message">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="col-4 publisher_space">
+                    <div id="publisher" data-publisher_name="{{ user }}"></div>
+                </div>
+            </div>
+        </div>
+        <div id="message_box">
+            <h1>Chat</h1>
+            <div id="history_box">
+                
+            </div>
+            <div id="message_form_box">
+                <form class="message_form" id="message_form">
+                    <input placeholder="Write your message..." type="text" name="messages" id="messages">
+                    <button id="submit" class="submit" type="submit"><i class="bi bi-arrow-right-short"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.main_secret = '{{apiKey}}';
+        window.sessionId = '{{session_id}}';
+        window.token = '{{token}}';
+        window.call_pin = '{{ call_pin }}'
+
+        // var apiKey = '{{apiKey}}'
+        // var sessionId = '{{session_id}}'
+        // var token = '{{token}}'
+        // var call_pin = '{{ call_pin }}'
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+{% endblock content %}

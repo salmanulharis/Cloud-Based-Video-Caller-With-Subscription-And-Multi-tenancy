@@ -1,0 +1,14 @@
+appenv/
+appenv/
+.env
+.env/
+migrations/versions
+migrations
+migrations/
+migration_tenant/
+**/__pycache__/
+*/__pycache__/
+*.pyc
+*.db
+app/static
+app/static/

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+	<div class="content-section">
+		<form method="post" action="/create-checkout-session" method="multipart/form-data">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group address_form">
+				<legend class="border-bottom mb-4">Add Product</legend>
+				<div class="form-group">
+					{{ form.fullname.label(class="form-control-label") }}
+
+					{% if form.fullname.errors %}
+						{{ form.fullname(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.fullname.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.fullname(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.phone.label(class="form-control-label") }}
+
+					{% if form.phone.errors %}
+						{{ form.phone(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.phone.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.phone(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.pin_code.label(class="form-control-label") }}
+
+					{% if form.pin_code.errors %}
+						{{ form.pin_code(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.pin_code.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.pin_code(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.state.label(class="form-control-label") }}
+
+					{% if form.state.errors %}
+						{{ form.state(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.state.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.state(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.city.label(class="form-control-label") }}
+
+					{% if form.city.errors %}
+						{{ form.city(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.city.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.city(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{ form.building.label(class="form-control-label") }}
+
+					{% if form.building.errors %}
+						{{ form.building(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.building.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.building(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit(class="btn btn-success") }}	
+			</div>
+		</form>
+	</div>
+
+{% endblock content %}

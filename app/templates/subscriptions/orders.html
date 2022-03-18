@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">Cost</th>
+	      <th scope="col">Plan</th>
+	      <th scope="col">Plan start</th>
+	      <th scope="col">Plan end</th>
+	      <th scope="col">Invoice</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+		{% for payments in payment_history %}
+		    <tr>
+		      <th scope="row">{{payments.id}}</th>
+		      <td>{{payments.price}}</td>
+		      <td>Basic plan</td>
+		      <td>{{payments.start_date.strftime('%Y-%m-%d %H:%M')}}</td>
+		      <td>{{payments.end_date.strftime('%Y-%m-%d %H:%M')}}</td>
+		      <td><a href="/show_invoice/{{ payments.id }}">Invoice</a></td>
+		    </tr>
+		{% endfor %}
+	  </tbody>
+	</table>
+{% endblock content %}

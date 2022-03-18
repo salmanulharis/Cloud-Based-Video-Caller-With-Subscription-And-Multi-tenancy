@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+	<div class="d-flex flex-column align-items-center pt-5">
+		<h1 style="color: red;">Hi {{ user }}</h1>
+		<!-- <div class="home_container">
+			<a href="{{ url_for('calling.optok') }}">Start call</a>
+			<a href="{{ url_for('users.user_details') }}">User details</a>
+			<a href="{{ url_for('products.show_products') }}">Products</a>
+		</div> -->
+		<div>
+			{% if subs_history %}
+				<h1>Your are subscribed to 
+					{% if subs_history.plan_id == 1 %}
+						<span>Basic Plan, </span>
+					{% elif subs_history.plan_id == 2 %}
+						<span>Premium Plan, </span>
+					{% elif subs_history.plan_id == 0 %}
+						<span>Free Plan, </span>
+					{% endif %}
+					<a href="/sub_approve">Change plan?</a>
+				</h1>
+			{% else %}
+				<h1>Your are not subscribed, <a href="/sub_approve">Subscribe here</a></h1>
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,8 @@
+<html>
+  <head><title>Payment Cancelled !</title></head>
+  <body>
+    <h1>Payment Cancelled!</h1>
+    <p>You can <a href="/pay_again/{{ session_id }}">Pay again</a></p>
+    <p><a href="{{ url_for('products.show_products') }}">Product Page</a> here</p>
+  </body>
+</html>

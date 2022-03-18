@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="m-3">
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Session</th>
+          <th>Status</th>
+        </tr>
+        {% for order in orders %}
+          <tr>
+            <td><div class="table_column">{{ order.id }}</div></td>
+            <td><div class="table_column">{{ order.session_id }}</div></td>
+            {% if order.status == 'unpaid' %}
+              <td><div class="table_column">{{ order.status }}, <a href="/pay_again/{{ order.session_id }}">pay again</a></div></td>
+            {% else %}
+              <td><div class="table_column">{{ order.status }}</div></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+
+{% endblock content %}
