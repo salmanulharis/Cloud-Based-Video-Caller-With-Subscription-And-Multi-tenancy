@@ -1,0 +1,105 @@
+.profile_pic {
+	height: 100px;
+	width: auto;
+	border-radius: 50%;
+}
+
+.pro_pic_div {
+	padding: 15px;
+	padding-top: 0px;
+}
+
+.address_form {
+	display: flex;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px 10px;
+  overflow: hidden;
+}
+
+table {
+	width: 100%;
+}
+
+.table_column {
+	overflow: hidden;
+}
+
+.sub_product_container, .address_container, .payment_option_container {
+	display: flex;
+}
+
+.sub_product, .address_box, .stripe_container{
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid lightgray;
+	display: flex;
+	flex-direction: column;
+}
+
+.plan_container {
+	display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.sub_details_container {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  margin: 50px;
+  border: 1px solid gray;
+  width: 350px;
+	height: 500px;
+	justify-content: center;
+}
+
+.sub_details_container.basic {
+	background: skyblue;
+}
+
+.sub_details_container.premium {
+	background: gold;
+}
+
+.address_box.used {
+	background: lightskyblue;
+}
+
+.using_address, .user_address{
+	text-align: center;
+	border: solid 1px black;
+	padding: 25px;
+	margin: 10px;
+}
+
+.address_details p, .address_box p{
+	margin: 0px;
+}
+
+.form_container {
+	width: 30%;
+  padding: 25px;
+}
+
+.home_container a{
+	border: solid 1px gray;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.result_container {
+	text-align: center;
+  padding-top: 200px;
+}
+
+.address_form {
+	display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+

@@ -1,0 +1,290 @@
+body, html {
+    background-color: black;
+    height: 100%;
+    overflow: hidden;
+}
+
+.main_container {
+    /*width: 100%;*/
+    height: 100%;
+}
+
+#videos {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    margin-left: auto;
+    /*margin-right: auto;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: margin 0.25s;
+}
+
+#subscriber {
+    /*border-radius: 5px;*/
+    display: flex;
+    position: relative;
+    left: 1%;
+    top: 0;
+    width: 100%;
+    height: 80%;
+    z-index: 10;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#publisher {
+    /*position: absolute;*/
+    width: 200px;
+    height: 100%;
+    bottom: 15px;
+    right: 15px;
+    z-index: 100;
+    margin-right: 5px;
+    
+}
+
+#publisher div {
+    border-radius: 10px;
+}
+
+#subscriber div {
+    border-radius: 10px;
+}
+
+#subscriber .per-sub {
+    border: 5px solid black;
+}
+
+.publisher_container {
+    height: 15%;
+    padding-top: 15px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+}
+
+.button_space {
+    text-align: center;
+}
+
+.publisher_space {
+    height: 100%;
+    padding-right: 0px;
+    text-align: -webkit-right;
+}
+
+#audiomute, #videomute, #options, #message, #submit {
+    outline: none; 
+    margin: 5px;
+    border: 0;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    /*text-align: center;*/
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+
+#audiomute, #videomute, #options, #message {
+    background-color: dimgray;
+    color: white;
+}
+
+#submit {
+    background: ;
+}
+
+
+#call_disconnect {
+    outline: none; 
+    margin: 5px;
+    color: white;
+    height: 40px;
+    width: 40px;
+    border: 0;
+    border-radius: 10px;
+    background: red;
+}
+
+#muted_or {
+    z-index: 1;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+#muted_or i {
+    height: 30px;
+    width: 30px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#muted_or .bi-mic-mute-fill {
+    color: red;
+}
+
+#muted_or .bi-mic-fill {
+    color: gray;
+}
+
+#videoOff h1 {
+    padding: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: skyblue;
+    display: flex;
+    justify-content: center;
+}
+
+#videoOff {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: gray;
+}
+
+#message_box {
+    background: white;
+    padding: 15px;
+    /*display: none;*/
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 400px;
+    transform: translate(400px);
+    transition: margin 0.25s;
+    font-size: smaller;
+}
+
+
+#message_form_box {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.collapse_message_box {
+    margin-right: 400px;
+}
+
+.message_form #messages {
+    padding: 15px;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-left: 0px;
+    border-right: 0px;
+    outline: none;
+}
+
+.message_form #messages::placeholder {
+    color: lightgray;
+}
+
+.message_form {
+    display: flex;
+    align-items: center;
+}
+
+.message_form #submit {
+    position: absolute;
+    right: 20px;
+}
+
+.mine {
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+}
+
+.mine .msg-content {
+    align-self: end;
+    width: 90%;
+    border-radius: 20px 20px 0px 20px;
+    background: #03abab1c;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+}
+
+.mine, .theirs {
+    margin-bottom: 5px;
+}
+
+.mine p, .theirs p {
+    margin: 0%;
+}
+
+.msg-user {
+    color: darkturquoise;
+}
+
+.theirs .msg-content {
+    background: #f9f9f9;
+    width: 90%;
+    padding: 10px 20px;
+    border-radius: 20px 20px 20px 0px;
+    margin-bottom: 5px;
+}
+
+#sub_name {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+}
+
+.option_popup {
+    font-size: smaller;
+    position: absolute;
+    color: black;
+    background: white;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    bottom: 20px;
+    padding: 25px;
+    word-break: break-all;
+}
+
+#join_link_heading {
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
+#copy_join_link {
+    padding-bottom: 25px;
+}
+
+#copy_link_button, #copy_message_button {
+    border-radius: 20px;
+    border: 0;
+    background: orange;
+    width: 150px;
+    padding: 10px;
+    margin-right: 20px;
+    color: white;
+}
+
+#no_one {
+    position: absolute;
+    color: white;
+    top: 50%;
+}
+
+

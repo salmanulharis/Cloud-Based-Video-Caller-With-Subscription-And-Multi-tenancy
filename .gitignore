@@ -12,5 +12,5 @@ migration_tenant/README
 */__pycache__/
 *.pyc
 *.db
-app/static
-app/static/
+# app/static
+app/static/images
