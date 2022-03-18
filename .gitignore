@@ -5,7 +5,7 @@ appenv/
 migrations/versions
 migrations
 migrations/
-migration_tenant/
+# migration_tenant/
 **/__pycache__/
 */__pycache__/
 *.pyc
